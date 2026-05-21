@@ -1,38 +1,67 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 const technologies = ["React", "Next.js", "TypeScript", "Tailwind CSS"];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8 },
+  },
+};
+
+const stagger = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.12 },
+  },
+};
 
 export default function Hero() {
   return (
-    <section
+    <motion.section
       id="inicio"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
       className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-24"
     >
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute left-1/2 top-1/3 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-cyan-500 blur-[140px]" />
+        <motion.div
+          initial={{ scale: 0.95, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.2 }}
+          className="absolute left-1/2 top-1/3 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-cyan-500 blur-[140px]"
+        />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-4xl text-center">
-        <div className="mb-6 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-5 py-2 text-sm text-cyan-300">
+      <motion.div className="relative z-10 mx-auto max-w-4xl text-center" variants={stagger}>
+        <motion.div variants={fadeUp} className="mb-6 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-5 py-2 text-sm text-cyan-300">
           Disponible para nuevas oportunidades
-        </div>
+        </motion.div>
 
-        <p className="mb-6 text-sm uppercase tracking-[0.4em] text-cyan-400">
+        <motion.p variants={fadeUp} className="mb-6 text-sm uppercase tracking-[0.4em] text-cyan-400">
           Portafolio Profesional
-        </p>
+        </motion.p>
 
-        <h1 className="mb-6 text-6xl font-black tracking-tight text-white md:text-8xl">
+        <motion.h1 variants={fadeUp} className="mb-6 text-6xl font-black tracking-tight text-white md:text-8xl">
           Ian <span className="text-cyan-400">Sollner</span>
-        </h1>
+        </motion.h1>
 
-        <h2 className="mb-8 text-2xl font-medium text-slate-300 md:text-3xl">
+        <motion.h2 variants={fadeUp} className="mb-8 text-2xl font-medium text-slate-300 md:text-3xl">
           Ingeniería Civil en Computación e Informática
-        </h2>
+        </motion.h2>
 
-        <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-400 md:text-xl">
+        <motion.p variants={fadeUp} className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-400 md:text-xl">
           Desarrollo web, automatización de procesos, análisis de sistemas,
           BPMN y tecnologías modernas para construir soluciones digitales.
-        </p>
+        </motion.p>
 
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <motion.div variants={fadeUp} className="mt-8 flex flex-wrap justify-center gap-3">
           {technologies.map((tech) => (
             <span
               key={tech}
@@ -41,14 +70,14 @@ export default function Hero() {
               {tech}
             </span>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
+        <motion.div variants={fadeUp} className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
           <a
-            href="#proyectos"
+            href="#portafolio"
             className="rounded-2xl bg-cyan-400 px-8 py-4 font-semibold text-slate-950 transition hover:scale-105 hover:bg-cyan-300"
           >
-            Ver proyectos
+            Ver portafolio
           </a>
 
           <a
@@ -57,15 +86,16 @@ export default function Hero() {
           >
             Contacto
           </a>
-        </div>
+        </motion.div>
 
-        <a
+        <motion.a
+          variants={fadeUp}
           href="#sobre-mi"
           className="mt-16 inline-block text-sm text-slate-500 transition hover:text-cyan-400"
         >
           Desliza para conocer más ↓
-        </a>
-      </div>
-    </section>
+        </motion.a>
+      </motion.div>
+    </motion.section>
   );
 }

@@ -46,8 +46,8 @@ export default function Navbar() {
             Experiencia
           </a>
 
-          <a href="#proyectos" className="transition duration-300 hover:text-cyan-400">
-            Proyectos
+          <a href="#portafolio" className="transition duration-300 hover:text-cyan-400">
+            Portafolio
           </a>
 
           <a href="#educacion" className="transition duration-300 hover:text-cyan-400">
@@ -70,8 +70,8 @@ export default function Navbar() {
             <a href="#experiencia" onClick={() => setOpen(false)} className="transition duration-300 hover:text-cyan-400">
               Experiencia
             </a>
-            <a href="#proyectos" onClick={() => setOpen(false)} className="transition duration-300 hover:text-cyan-400">
-              Proyectos
+            <a href="#portafolio" onClick={() => setOpen(false)} className="transition duration-300 hover:text-cyan-400">
+              Portafolio
             </a>
             <a href="#educacion" onClick={() => setOpen(false)} className="transition duration-300 hover:text-cyan-400">
               Educación

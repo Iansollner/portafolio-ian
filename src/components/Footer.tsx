@@ -11,8 +11,8 @@ export default function Footer() {
             Inicio
           </a>
 
-          <a href="#proyectos" className="transition hover:text-cyan-400">
-            Proyectos
+          <a href="#portafolio" className="transition hover:text-cyan-400">
+            Portafolio
           </a>
 
           <a href="#contacto" className="transition hover:text-cyan-400">

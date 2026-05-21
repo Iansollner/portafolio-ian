@@ -54,7 +54,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="proyectos" className="px-6 py-28">
+    <section id="portafolio" className="px-6 py-28">
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-cyan-400">
@@ -62,7 +62,7 @@ export default function Projects() {
           </p>
 
           <h2 className="text-4xl font-black text-white md:text-6xl">
-            Proyectos destacados
+            Portafolio
           </h2>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-400">
@@ -78,17 +78,18 @@ export default function Projects() {
             return (
               <article
                 key={project.title}
-                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-cyan-400/50 hover:shadow-2xl hover:shadow-cyan-500/10"
+                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-8 shadow-xl shadow-slate-950/20 backdrop-blur-xl transition duration-300 hover:-translate-y-2 hover:border-cyan-400/60 hover:bg-slate-950/95 hover:shadow-2xl hover:shadow-cyan-500/20"
               >
-                <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-cyan-400/10 blur-3xl transition group-hover:bg-cyan-400/20" />
+                <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-cyan-400/10 blur-3xl transition duration-500 group-hover:bg-cyan-400/20" />
+                <div className="absolute -bottom-8 left-10 h-24 w-24 rounded-full bg-cyan-400/10 blur-3xl opacity-50 transition duration-500 group-hover:opacity-100" />
 
                 <div className="relative z-10">
                   <div className="mb-6 flex items-start justify-between gap-4">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-400/10 text-cyan-400">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan-400/20 bg-white/5 text-cyan-400 shadow-inner shadow-cyan-500/10 transition duration-300 group-hover:bg-cyan-400/10">
                       <Icon size={28} />
                     </div>
 
-                    <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-300">
+                    <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-300 transition duration-300 group-hover:bg-cyan-400/15 group-hover:text-cyan-200">
                       {project.type}
                     </span>
                   </div>
@@ -105,7 +106,7 @@ export default function Projects() {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="rounded-full border border-white/10 bg-slate-950/70 px-3 py-1 text-sm text-slate-300"
+                        className="rounded-full border border-white/10 bg-slate-950/70 px-3 py-1 text-sm text-slate-300 transition duration-300 group-hover:bg-cyan-400/10 group-hover:text-cyan-200"
                       >
                         {tech}
                       </span>
@@ -117,7 +118,7 @@ export default function Projects() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-400 hover:text-cyan-400"
+                      className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-400 hover:text-cyan-400 hover:shadow-lg hover:shadow-cyan-500/20"
                     >
                       <GitBranch size={18} />
                       GitHub
@@ -127,7 +128,7 @@ export default function Projects() {
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
+                      className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 hover:shadow-lg hover:shadow-cyan-500/20"
                     >
                       <ExternalLink size={18} />
                       Ver proyecto
