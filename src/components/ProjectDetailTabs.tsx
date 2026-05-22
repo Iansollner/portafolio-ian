@@ -18,6 +18,14 @@ const tabs: TabConfig[] = [
   { id: "arquitectura", label: "Arquitectura" },
 ];
 
+const categoryColors: Record<string, string> = {
+  Frontend: "bg-blue-400/10 text-blue-300 border-blue-400/30",
+  Backend: "bg-purple-400/10 text-purple-300 border-purple-400/30",
+  "Full Stack": "bg-green-400/10 text-green-300 border-green-400/30",
+  App: "bg-pink-400/10 text-pink-300 border-pink-400/30",
+  "Análisis de sistema": "bg-orange-400/10 text-orange-300 border-orange-400/30",
+};
+
 export default function ProjectDetailTabs({ project }: { project: Project }) {
   const [activeTab, setActiveTab] = useState<Tab>("necesidades");
 
@@ -105,9 +113,14 @@ export default function ProjectDetailTabs({ project }: { project: Project }) {
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-cyan-400">
                 Caso de estudio
               </p>
-              <h1 className="text-4xl font-black text-white md:text-5xl">
-                {project.title}
-              </h1>
+              <div className="mb-3 flex flex-wrap items-center gap-3">
+                <h1 className="text-4xl font-black text-white md:text-5xl">
+                  {project.title}
+                </h1>
+                <span className={`rounded-full border px-3 py-1 text-sm font-semibold ${categoryColors[project.category] || "border-cyan-400/20 bg-cyan-400/10 text-cyan-300"}`}>
+                  {project.category}
+                </span>
+              </div>
               <p className="mt-4 max-w-3xl text-lg leading-relaxed text-slate-400">
                 {project.description}
               </p>
@@ -122,7 +135,15 @@ export default function ProjectDetailTabs({ project }: { project: Project }) {
           </div>
 
           {/* Metadata */}
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur">
+              <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+                Categoría
+              </p>
+              <p className={`mt-2 inline-flex rounded-full border px-3 py-1 text-sm font-semibold ${categoryColors[project.category] || "border-cyan-400/20 bg-cyan-400/10 text-cyan-300"}`}>
+                {project.category}
+              </p>
+            </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur">
               <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
                 Tipo de proyecto
