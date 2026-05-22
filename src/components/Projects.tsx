@@ -1,4 +1,5 @@
 
+import Link from "next/link";
 import {
   Cloud,
   Code2,
@@ -7,50 +8,15 @@ import {
   Network,
   Workflow,
 } from "lucide-react";
+import { projects } from "../data/projects";
 
 
-const projects = [
-  {
-    title: "Gestor de Actas",
-    description:
-      "Sistema desarrollado para la gestión y organización de actas, enfocado en mejorar el control documental y facilitar procesos administrativos.",
-    type: "Sistema web",
-    icon: Code2,
-    technologies: ["React", "Node.js", "Express", "JavaScript"],
-    github: "https://github.com/Iansollner/Gestor-Actas",
-    demo: "#",
-  },
-  {
-    title: "E-commerce React + Express",
-    description:
-      "Plataforma de comercio electrónico desarrollada con frontend en React y backend en Express, orientada a la gestión de productos, ventas y operaciones básicas.",
-    type: "Desarrollo web",
-    icon: Code2,
-    technologies: ["React", "Express", "Node.js", "JavaScript"],
-    github: "#",
-    demo: "#",
-  },
-  {
-    title: "Resolución de matrices con MPI",
-    description:
-      "Programa en C con MPI para resolver sistemas de ecuaciones mediante sustitución hacia atrás, utilizando distribución de filas en bloques cíclicos.",
-    type: "Programación paralela",
-    icon: Network,
-    technologies: ["C", "MPI", "Linux", "Benchmarking"],
-    github: "#",
-    demo: "#",
-  },
-  {
-    title: "Servidor Linux en Oracle Cloud",
-    description:
-      "Configuración de un entorno Linux en Oracle Cloud Free Tier, aplicando conceptos de infraestructura, redes, administración de servidores y despliegue.",
-    type: "Infraestructura Cloud",
-    icon: Cloud,
-    technologies: ["Oracle Cloud", "Linux", "Redes", "Servidor"],
-    github: "#",
-    demo: "#",
-  },
-];
+const projectIcons: Record<string, typeof Code2> = {
+  "Gestor de Actas": Code2,
+  "E-commerce React + Express": Code2,
+  "Resolución de matrices con MPI": Network,
+  "Servidor Linux en Oracle Cloud": Cloud,
+};
 
 export default function Projects() {
   return (
@@ -73,7 +39,7 @@ export default function Projects() {
 
         <div className="grid gap-8 md:grid-cols-2">
           {projects.map((project) => {
-            const Icon = project.icon;
+            const Icon = projectIcons[project.title] ?? Code2;
 
             return (
               <article
@@ -130,15 +96,13 @@ export default function Projects() {
                       GitHub
                     </a>
 
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      href={`/proyectos/${project.slug}`}
                       className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 hover:shadow-lg hover:shadow-cyan-500/20"
                     >
                       <ExternalLink size={18} />
                       Ver proyecto
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </article>
