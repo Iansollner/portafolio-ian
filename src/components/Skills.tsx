@@ -11,38 +11,60 @@ const skillCategories = [
   {
     title: "Frontend",
     icon: Code2,
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    skills: [
+      { name: "React", level: "Avanzado", progress: 90 },
+      { name: "Next.js", level: "Avanzado", progress: 85 },
+      { name: "TypeScript", level: "Avanzado", progress: 85 },
+      { name: "Tailwind CSS", level: "Intermedio-Avanzado", progress: 70 },
+    ],
   },
   {
     title: "Backend",
     icon: Server,
-    skills: ["Node.js", "Express", "Java", "C"],
+    skills: [
+      { name: "Node.js", level: "Avanzado", progress: 85 },
+      { name: "Express", level: "Intermedio-Avanzado", progress: 70 },
+      { name: "Java", level: "Intermedio-Avanzado", progress: 65 },
+      { name: "C", level: "Intermedio", progress: 55 },
+    ],
   },
   {
     title: "Bases de datos",
     icon: Database,
-    skills: ["MySQL", "SQL Server"],
+    skills: [
+      { name: "MySQL", level: "Intermedio-Avanzado", progress: 70 },
+      { name: "SQL Server", level: "Intermedio", progress: 55 },
+    ],
   },
   {
     title: "Herramientas",
     icon: Wrench,
-    skills: ["Git", "GitHub", "VS Code", "Postman"],
+    skills: [
+      { name: "Git", level: "Avanzado", progress: 85 },
+      { name: "GitHub", level: "Avanzado", progress: 85 },
+      { name: "VS Code", level: "Avanzado", progress: 90 },
+      { name: "Postman", level: "Intermedio-Avanzado", progress: 70 },
+    ],
   },
   {
     title: "DevOps & Cloud",
     icon: Cloud,
     skills: [
-      "Docker",
-      "Oracle Cloud",
-      "Linux",
-      "Vercel",
-      "Git",
+      { name: "Docker", level: "Intermedio-Avanzado", progress: 70 },
+      { name: "Oracle Cloud", level: "Intermedio", progress: 55 },
+      { name: "Linux", level: "Intermedio", progress: 55 },
+      { name: "Vercel", level: "Intermedio-Avanzado", progress: 70 },
+      { name: "Git", level: "Avanzado", progress: 85 },
     ],
   },
   {
     title: "Modelamiento",
     icon: Workflow,
-    skills: ["BPMN", "SIMPLE", "Análisis de procesos"],
+    skills: [
+      { name: "BPMN", level: "Avanzado", progress: 85 },
+      { name: "SIMPLE", level: "Intermedio-Avanzado", progress: 70 },
+      { name: "Análisis de procesos", level: "Intermedio-Avanzado", progress: 70 },
+    ],
   },
 ];
 
@@ -84,14 +106,35 @@ export default function Skills() {
                     </h3>
                   </div>
 
-                  <div className="flex flex-wrap gap-3">
+                  <div className="space-y-4">
                     {category.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-300"
-                      >
-                        {skill}
-                      </span>
+                      <div key={skill.name} className="rounded-3xl border border-white/10 bg-slate-950/40 p-4">
+                        <div className="mb-3 flex items-center justify-between gap-3">
+                          <span className="font-semibold text-slate-100">
+                            {skill.name}
+                          </span>
+                          <span className="text-xs uppercase tracking-[0.2em] text-cyan-300/90">
+                            {skill.level}
+                          </span>
+                        </div>
+
+                        <div className="relative h-2 rounded-full bg-slate-800">
+                          <div
+                            className="absolute inset-y-0 left-0 rounded-full bg-cyan-400"
+                            style={{ width: `${skill.progress}%` }}
+                          />
+                          <span
+                            className="absolute -top-2.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-cyan-400/90 ring-2 ring-slate-950"
+                            style={{ left: `calc(${skill.progress}% - 0.625rem)` }}
+                          />
+                        </div>
+
+                        <div className="mt-2 flex justify-between text-[11px] uppercase text-slate-500">
+                          <span>Básico</span>
+                          <span>Intermedio</span>
+                          <span>Avanzado</span>
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </div>

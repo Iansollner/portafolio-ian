@@ -94,6 +94,12 @@ export default function Projects() {
                     </span>
                   </div>
 
+                  <div className="mb-6 overflow-hidden rounded-3xl border border-dashed border-cyan-400/30 bg-slate-950/60">
+                    <div className="flex h-44 items-center justify-center px-4 text-center text-sm text-slate-500">
+                      Espacio para imagen del proyecto
+                    </div>
+                  </div>
+
                   <h3 className="mb-4 text-2xl font-bold text-white transition group-hover:text-cyan-300">
                     {project.title}
                   </h3>
