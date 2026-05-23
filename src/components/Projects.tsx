@@ -1,6 +1,7 @@
 
 "use client";
 
+import Image from "next/image";
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import {
@@ -153,10 +154,23 @@ export default function Projects() {
                       </div>
                     </div>
 
-                    <div className="mb-6 overflow-hidden rounded-3xl border border-dashed border-cyan-400/30 bg-slate-950/60">
-                      <div className="flex h-44 items-center justify-center px-4 text-center text-sm text-slate-500">
-                        Espacio para imagen del proyecto
-                      </div>
+                    <div
+                      className={`mb-6 overflow-hidden rounded-3xl border border-cyan-400/20 ${
+                        project.slug === "gestor-de-actas"
+                          ? "bg-white p-2"
+                          : "bg-slate-950/60"
+                      }`}
+>                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        width={800}
+                        height={450}
+                        className={`w-full transition duration-500 group-hover:scale-105 ${
+                          project.slug === "ecommerce-react-express"
+                            ? "h-44 object-contain p-4"
+                            : "h-44 object-cover"
+                        }`}
+                      />
                     </div>
 
                     <h3 className="mb-4 text-2xl font-bold text-white transition group-hover:text-cyan-300">

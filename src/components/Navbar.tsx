@@ -9,7 +9,7 @@ export default function Navbar() {
     <header className="fixed left-0 top-0 z-50 w-full px-4 py-4 sm:px-6">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 rounded-2xl border border-white/10 bg-slate-950/70 px-5 py-4 shadow-2xl shadow-cyan-500/5 backdrop-blur-xl">
         <a href="#inicio" className="text-xl font-black tracking-wide text-white">
-          Ian<span className="text-cyan-400">.</span>
+          Ian<span className="text-cyan-400"> S</span>
         </a>
 
         <button

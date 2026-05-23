@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export type Project = {
   slug: string;
   title: string;
@@ -11,10 +13,12 @@ export type Project = {
   necesidades: string[];
   objetivos: string[];
   arquitectura: string;
+  image: string;
 };
 
 export const projects: Project[] = [
   {
+    image: "/imagen/slep_2.png",
     slug: "gestor-de-actas",
     title: "Gestor de Actas",
     description:
@@ -44,6 +48,7 @@ export const projects: Project[] = [
       "Frontend en React con componentes reutilizables y manejo de estado con hooks. Backend en Node.js/Express con rutas RESTful. Base de datos relacional para gestión de usuarios y documentos. Autenticación con JWT. Almacenamiento de archivos en servidor local.",
   },
   {
+    image: "/imagen/foto_formal_2.png",
     slug: "ecommerce-react-express",
     title: "E-commerce React + Express",
     description:
@@ -73,6 +78,7 @@ export const projects: Project[] = [
       "Frontend SPA con React usando componentes funcionales y Context API. Backend con Express que expone endpoints REST. Base de datos para productos, usuarios y órdenes. Autenticación de usuarios. Validación de datos con schemas personalizados.",
   },
   {
+    image: "/imagen/matrices.png",
     slug: "matrices-mpi",
     title: "Resolución de matrices con MPI",
     description:
@@ -102,6 +108,7 @@ export const projects: Project[] = [
       "Programa en C usando MPI para comunicación entre procesos. Distribución de matriz en bloques cíclicos entre procesos. Sincronización con MPI_Barrier. Cada proceso realiza cálculos locales independientes. Recolección de resultados en proceso maestro.",
   },
   {
+    image: "/imagen/matrices.png",
     slug: "servidor-linux-oracle-cloud",
     title: "Servidor Linux en Oracle Cloud",
     description:

@@ -12,9 +12,9 @@ const skillCategories = [
     title: "Frontend",
     icon: Code2,
     skills: [
-      { name: "React", level: "Avanzado", progress: 90 },
-      { name: "Next.js", level: "Avanzado", progress: 85 },
-      { name: "TypeScript", level: "Avanzado", progress: 85 },
+      { name: "React", level: "Intermedio-Avanzado", progress: 75 },
+      { name: "Next.js", level: "Intermedio-Avanzado", progress: 75 },
+      { name: "TypeScript", level: "Intermedio-Avanzado", progress: 75 },
       { name: "Tailwind CSS", level: "Intermedio-Avanzado", progress: 70 },
     ],
   },
@@ -22,18 +22,18 @@ const skillCategories = [
     title: "Backend",
     icon: Server,
     skills: [
-      { name: "Node.js", level: "Avanzado", progress: 85 },
+      { name: "Node.js", level: "Intermedio-Avanzado", progress: 75 },
       { name: "Express", level: "Intermedio-Avanzado", progress: 70 },
-      { name: "Java", level: "Intermedio-Avanzado", progress: 65 },
-      { name: "C", level: "Intermedio", progress: 55 },
+      { name: "Java", level: "Intermedio", progress: 65 },
+      { name: "C", level: "Intermedio-Avanzado", progress: 80 },
     ],
   },
   {
     title: "Bases de datos",
     icon: Database,
     skills: [
-      { name: "MySQL", level: "Intermedio-Avanzado", progress: 70 },
-      { name: "SQL Server", level: "Intermedio", progress: 55 },
+      { name: "MySQL", level: "Avanzado", progress: 85 },
+      { name: "SQL Server", level: "Intermedio-Avanzado", progress: 80 },
     ],
   },
   {
@@ -52,18 +52,17 @@ const skillCategories = [
     skills: [
       { name: "Docker", level: "Intermedio-Avanzado", progress: 70 },
       { name: "Oracle Cloud", level: "Intermedio", progress: 55 },
-      { name: "Linux", level: "Intermedio", progress: 55 },
-      { name: "Vercel", level: "Intermedio-Avanzado", progress: 70 },
+      { name: "Linux", level: "Intermedio", progress: 65 },
       { name: "Git", level: "Avanzado", progress: 85 },
     ],
   },
   {
-    title: "Modelamiento",
+    title: "Analisis de sistemas",
     icon: Workflow,
     skills: [
-      { name: "BPMN", level: "Avanzado", progress: 85 },
-      { name: "SIMPLE", level: "Intermedio-Avanzado", progress: 70 },
-      { name: "Análisis de procesos", level: "Intermedio-Avanzado", progress: 70 },
+      { name: "BPMN", level: "Avanzado", progress: 80 },
+      { name: "SIMPLE", level: "Avanzado", progress: 90 },
+      { name: "Análisis de procesos", level: "Avanzado", progress: 90 },
     ],
   },
 ];

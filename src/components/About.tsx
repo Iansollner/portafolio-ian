@@ -24,7 +24,7 @@ export default function About() {
           <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur transition hover:border-cyan-400/40">
             <div className="mb-6 overflow-hidden rounded-3xl border border-cyan-400/20">
               <Image
-                src="/imagen/Foto_Formal_3.png"
+                src="/imagen/foto_formal_3.png"
                 alt="Ian Sollner"
                 width={400}
                 height={500}
@@ -44,7 +44,7 @@ export default function About() {
               <p>📍 Punta Arenas, Chile</p>
               <p>💻 Desarrollo web y sistemas</p>
               <p>🧩 Automatización de procesos</p>
-              <p>📊 Modelamiento BPMN</p>
+              <p>📊 Analisis de Sistemas</p>
             </div>
           </div>
 
@@ -55,36 +55,37 @@ export default function About() {
 
             <div className="space-y-5 leading-relaxed text-slate-300">
               <p>
-                Soy estudiante de Ingeniería Civil en Computación e Informática,
-                con interés en el desarrollo de software, la automatización de
-                procesos y el análisis de sistemas de información.
+                Soy Ingeniero Civil en Computación e Informática, con formación en desarrollo de 
+                software, análisis y diseño de sistemas, bases de datos y redes de computadores.
               </p>
 
               <p>
-                Actualmente desarrollo un proyecto de tesis relacionado con el
-                análisis y modelado de un Sistema de Información Administrativa
-                para el SLEP Magallanes, utilizando la plataforma SIMPLE para
-                apoyar procesos de solicitud, gestión documental y mejora
-                administrativa.
+                He participado en proyectos aplicados en entornos reales, incluyendo el 
+                desarrollo de un Sistema de Información Administrativa y el modelamiento 
+                de procesos para su implementación en la plataforma SIMPLE del sector público. 
+                Estas y otras experiencias me han permitido fortalecer mis habilidades en el análisis de 
+                requerimientos, resolución de problemas y trabajo en equipo.
               </p>
 
               <p>
-                Me interesa construir soluciones prácticas, bien estructuradas y
-                orientadas a resolver problemas reales, combinando tecnologías
-                modernas como React, Next.js, TypeScript y herramientas de
-                modelamiento de procesos.
+                Cuento con conocimientos en desarollo de software, manejo React, JavaScript, TypeSript, 
+                Python, Java y C, así como en administración de sistemas Linux, Docker y Oracle Cloud.
+                gestión de proyectos TI, administración de redes 
+                y gestión de bases de datos, con interés en desarrollarme profesionalmente 
+                en el área de tecnologías de la información, aportando soluciones eficientes 
+                y orientadas a las necesidades del negocio.
               </p>
             </div>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               <div className="rounded-2xl border border-white/10 bg-slate-950/60 p-5 text-center">
-                <p className="text-3xl font-black text-cyan-400">3+</p>
+                <p className="text-3xl font-black text-cyan-400">4+</p>
                 <p className="mt-1 text-sm text-slate-400">Proyectos TI</p>
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-slate-950/60 p-5 text-center">
-                <p className="text-3xl font-black text-cyan-400">6</p>
-                <p className="mt-1 text-sm text-slate-400">Años en retail</p>
+                <p className="text-3xl font-black text-cyan-400">1+</p>
+                <p className="mt-1 text-sm text-slate-400">Años de experiencia</p>
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-slate-950/60 p-5 text-center">
