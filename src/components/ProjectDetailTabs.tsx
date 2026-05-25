@@ -1,22 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { Project } from "../data/projects";
 
-type Tab = "necesidades" | "objetivos" | "tecnologias" | "arquitectura";
+type Tab =
+  | "necesidades"
+  | "objetivos"
+  | "tecnologias"
+  | "arquitectura"
+  | "resultados"
+  | "funcionalidades"
+  | "desafios";
 
 interface TabConfig {
   id: Tab;
   label: string;
+  visible: boolean;
 }
 
-const tabs: TabConfig[] = [
-  { id: "necesidades", label: "Necesidades" },
-  { id: "objetivos", label: "Objetivos" },
-  { id: "tecnologias", label: "Tecnologías" },
-  { id: "arquitectura", label: "Arquitectura" },
-];
+const createTabs = (project: Project): TabConfig[] => {
+  const tabs: TabConfig[] = [
+    { id: "necesidades", label: "Necesidades", visible: project.necesidades?.length > 0 },
+    { id: "objetivos", label: "Objetivos", visible: project.objetivos?.length > 0 },
+    { id: "tecnologias", label: "Tecnologías", visible: project.technologies?.length > 0 },
+    {
+      id: "arquitectura",
+      label: "Arquitectura",
+      visible:
+        project.arquitectura?.length > 0 || Boolean(project.architectureSections?.length),
+    },
+    { id: "resultados", label: "Resultados / Impacto", visible: Boolean(project.resultados?.length) },
+    { id: "funcionalidades", label: "Funcionalidades", visible: Boolean(project.funcionalidades?.length) },
+    { id: "desafios", label: "Desafíos técnicos", visible: Boolean(project.desafios?.length) },
+  ];
+
+  return tabs.filter((tab) => tab.visible);
+};
 
 const categoryColors: Record<string, string> = {
   Frontend: "bg-blue-400/10 text-blue-300 border-blue-400/30",
@@ -27,7 +48,27 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function ProjectDetailTabs({ project }: { project: Project }) {
-  const [activeTab, setActiveTab] = useState<Tab>("necesidades");
+  const tabs = createTabs(project);
+  const [activeTab, setActiveTab] = useState<Tab>(() => tabs[0]?.id ?? "necesidades");
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const architectureImages = project.architectureImages?.slice(0, 2) ?? [];
+  const architectureCaptions = project.architectureImageCaptions ?? [];
+  const architectureSections = project.architectureSections ?? [];
+
+  useEffect(() => {
+    if (!selectedImage) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedImage(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImage]);
+
+  const closeModal = () => setSelectedImage(null);
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -91,10 +132,133 @@ export default function ProjectDetailTabs({ project }: { project: Project }) {
 
       case "arquitectura":
         return (
-          <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-8">
-            <p className="leading-relaxed text-slate-300">
-              {project.arquitectura}
-            </p>
+          <div className="space-y-8">
+            {architectureImages.length > 0 && (
+              <div className="grid gap-4 sm:grid-cols-2">
+                {architectureImages.map((image, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setSelectedImage(image)}
+                    className="group overflow-hidden rounded-3xl border border-cyan-400/20 bg-slate-950/50 p-1 transition duration-300 hover:-translate-y-0.5 hover:border-cyan-400/40"
+                  >
+                    <div className="relative h-56 overflow-hidden rounded-3xl bg-slate-950">
+                      <Image
+                        src={image}
+                        alt={architectureCaptions[idx] ?? `Arquitectura ${idx + 1}`}
+                        fill
+                        className="object-cover transition duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="mt-3 text-left">
+                      <p className="text-sm font-semibold text-cyan-300">
+                        {architectureCaptions[idx] ?? `Arquitectura ${idx + 1}`}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+
+      {architectureSections.length > 0 ? (
+        <div className="grid gap-4 lg:grid-cols-2">
+          {architectureSections.map((section, idx) => (
+            <div
+              key={idx}
+              className="rounded-3xl border border-white/10 bg-slate-950/40 p-6 transition hover:-translate-y-0.5"
+            >
+              <p className="mb-3 text-xl font-semibold text-white">
+                {section.title}
+              </p>
+
+              <p className="leading-relaxed text-slate-300">
+                {section.description}
+              </p>
+
+              {section.points && section.points.length > 0 && (
+                <ul className="mt-4 space-y-2 text-slate-300">
+                  {section.points.map((point, pointIdx) => (
+                    <li
+                      key={pointIdx}
+                      className="flex items-start gap-2"
+                    >
+                      <span className="mt-1 text-cyan-400">•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="rounded-3xl border border-white/10 bg-slate-950/40 p-8">
+          <div className="space-y-4">
+            {project.arquitectura.map((item, idx) => (
+              <p key={idx} className="leading-relaxed text-slate-300">
+                {item}
+              </p>
+            ))}
+          </div>
+        </div>
+      )}
+          </div>
+        );
+
+      case "resultados":
+        return (
+          <div className="space-y-4">
+            {project.resultados?.map((resultado, idx) => (
+              <div
+                key={idx}
+                className="flex gap-4 rounded-2xl border border-white/10 bg-slate-950/40 p-4"
+              >
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-cyan-400/20 text-cyan-300">
+                  <svg
+                    className="h-4 w-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3-9.5l-3.5 3.5L7 9.5l1-1 1.5 1.5L12 7.5l1 1z" />
+                  </svg>
+                </div>
+                <p className="leading-relaxed text-slate-300">{resultado}</p>
+              </div>
+            ))}
+          </div>
+        );
+
+      case "funcionalidades":
+        return (
+          <div className="space-y-4">
+            {project.funcionalidades?.map((funcionalidad, idx) => (
+              <div
+                key={idx}
+                className="flex gap-4 rounded-2xl border border-white/10 bg-slate-950/40 p-4"
+              >
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-cyan-400/20 text-cyan-300">
+                  <span className="text-sm font-semibold">{idx + 1}</span>
+                </div>
+                <p className="leading-relaxed text-slate-300">{funcionalidad}</p>
+              </div>
+            ))}
+          </div>
+        );
+
+      case "desafios":
+        return (
+          <div className="space-y-4">
+            {project.desafios?.map((desafio, idx) => (
+              <div
+                key={idx}
+                className="flex gap-4 rounded-2xl border border-white/10 bg-slate-950/40 p-4"
+              >
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-cyan-400/20 text-cyan-300">
+                  <span className="text-sm font-semibold">{idx + 1}</span>
+                </div>
+                <p className="leading-relaxed text-slate-300">{desafio}</p>
+              </div>
+            ))}
           </div>
         );
 
@@ -110,9 +274,6 @@ export default function ProjectDetailTabs({ project }: { project: Project }) {
         <div className="mb-12">
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-cyan-400">
-                Caso de estudio
-              </p>
               <div className="mb-3 flex flex-wrap items-center gap-3">
                 <h1 className="text-4xl font-black text-white md:text-5xl">
                   {project.title}
@@ -176,7 +337,7 @@ export default function ProjectDetailTabs({ project }: { project: Project }) {
         </div>
 
         {/* Tabs Navigation */}
-        <div className="mb-12 overflow-x-auto">
+        <div className="mb-12 overflow-x-auto scrollbar-dark">
           <div className="flex gap-2 border-b border-white/10">
             {tabs.map((tab) => (
               <button
@@ -201,6 +362,35 @@ export default function ProjectDetailTabs({ project }: { project: Project }) {
           </h2>
           {renderTabContent()}
         </div>
+
+        {selectedImage && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 px-4 py-6 backdrop-blur-sm"
+            onClick={(event) => {
+              if (event.target === event.currentTarget) {
+                closeModal();
+              }
+            }}
+          >
+            <div className="relative mx-auto w-full max-w-5xl overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/95 shadow-2xl shadow-cyan-500/10">
+              <button
+                type="button"
+                onClick={closeModal}
+                className="absolute right-4 top-4 z-20 rounded-full border border-white/10 bg-slate-900/90 p-3 text-slate-100 transition hover:border-cyan-400 hover:text-cyan-300"
+              >
+                ×
+              </button>
+              <div className="relative h-[65vh] min-h-[320px] w-full bg-slate-950">
+                <Image
+                  src={selectedImage}
+                  alt="Imagen de arquitectura ampliada"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* CTA Section */}
         <div className="flex flex-col gap-3 sm:flex-row">

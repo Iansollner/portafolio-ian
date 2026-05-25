@@ -156,7 +156,7 @@ export default function Projects() {
 
                     <div
                       className={`mb-6 overflow-hidden rounded-3xl border border-cyan-400/20 ${
-                        project.slug === "gestor-de-actas"
+                        project.slug === "gestor-de-actas" || project.slug === "inventario_bodega_umag"
                           ? "bg-white p-2"
                           : "bg-slate-950/60"
                       }`}
@@ -166,8 +166,8 @@ export default function Projects() {
                         width={800}
                         height={450}
                         className={`w-full transition duration-500 group-hover:scale-105 ${
-                          project.slug === "ecommerce-react-express"
-                            ? "h-44 object-cover"
+                          project.slug === "inventario_bodega_umag"
+                            ? "h-44 object-contain"
                             : "h-44 object-cover"
                         }`}
                       />
