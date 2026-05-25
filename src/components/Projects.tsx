@@ -167,7 +167,7 @@ export default function Projects() {
                         height={450}
                         className={`w-full transition duration-500 group-hover:scale-105 ${
                           project.slug === "ecommerce-react-express"
-                            ? "h-44 object-contain p-4"
+                            ? "h-44 object-cover"
                             : "h-44 object-cover"
                         }`}
                       />

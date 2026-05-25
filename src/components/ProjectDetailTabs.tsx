@@ -122,7 +122,7 @@ export default function ProjectDetailTabs({ project }: { project: Project }) {
                 </span>
               </div>
               <p className="mt-4 max-w-3xl text-lg leading-relaxed text-slate-400">
-                {project.description}
+                {project.longDescription}
               </p>
             </div>
 
