@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
     });
 
     await resend.emails.send({
-      from: "Contacto Portafolio <contact@portafolio-ian.com>",
+      from: "Portfolio <onboarding@resend.dev>",
       to: "iansollner@gmail.com",
       subject: `Nuevo mensaje desde el formulario de contacto: ${name}`,
       html: `
@@ -64,8 +64,15 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: "Mensaje enviado correctamente." });
   } catch (error) {
     console.error("Error al procesar el formulario de contacto:", error);
+    const message =
+      error instanceof Error
+        ? error.message
+        : typeof error === "object" && error !== null && "message" in error
+        ? String((error as { message?: string }).message)
+        : "Ocurrió un error al enviar tu mensaje. Intenta nuevamente.";
+
     return NextResponse.json(
-      { error: "Ocurrió un error al enviar tu mensaje. Intenta nuevamente." },
+      { error: message || "Ocurrió un error al enviar tu mensaje. Intenta nuevamente." },
       { status: 500 }
     );
   }
