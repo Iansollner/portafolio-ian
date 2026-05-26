@@ -372,21 +372,36 @@ export default function ProjectDetailTabs({ project }: { project: Project }) {
               }
             }}
           >
-            <div className="relative mx-auto w-full max-w-5xl overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/95 shadow-2xl shadow-cyan-500/10">
-              <button
-                type="button"
-                onClick={closeModal}
-                className="absolute right-4 top-4 z-20 rounded-full border border-white/10 bg-slate-900/90 p-3 text-slate-100 transition hover:border-cyan-400 hover:text-cyan-300"
-              >
-                ×
-              </button>
-              <div className="relative h-[65vh] min-h-[320px] w-full bg-slate-950">
-                <Image
-                  src={selectedImage}
-                  alt="Imagen de arquitectura ampliada"
-                  fill
-                  className="object-contain"
-                />
+            <div className="relative mx-auto flex max-h-[90vh] max-w-[95vw] flex-col overflow-hidden rounded-[2rem] border border-cyan-400/20 bg-slate-950/95 shadow-2xl shadow-cyan-500/20">
+              {/* Header */}
+              <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
+                <p className="text-sm font-semibold text-slate-300">Arquitectura - Imagen ampliada</p>
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="rounded-full border border-white/10 bg-slate-900/90 p-3 text-slate-100 transition hover:border-cyan-400 hover:text-cyan-300"
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* Contenedor de imagen con scroll */}
+              <div className="relative flex flex-1 overflow-y-auto scrollbar-dark bg-slate-950/50">
+                <div className="flex w-full items-center justify-center p-6">
+                  <Image
+                    src={selectedImage}
+                    alt="Imagen de arquitectura ampliada"
+                    width={600}
+                    height={400}
+                    className="max-w-[500px] rounded-lg object-contain"
+                    priority
+                  />
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="border-t border-white/10 bg-slate-900/30 px-6 py-3 text-center text-xs text-slate-400">
+                Presiona ESC o haz click fuera para cerrar.
               </div>
             </div>
           </div>

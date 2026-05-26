@@ -37,7 +37,7 @@ export default function About() {
             </h3>
 
             <p className="mb-6 text-cyan-400">
-              Estudiante de Ingeniería Civil en Computación e Informática
+              Ingeniero Civil en Computación e Informática
             </p>
 
             <div className="space-y-3 text-sm text-slate-400">

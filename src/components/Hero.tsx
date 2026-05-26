@@ -102,16 +102,15 @@ export default function Hero() {
           className="mt-5 flex flex-wrap items-center justify-center gap-4"
         >
           <a
-            href="/cv.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-2xl border border-white/10 bg-white/5 px-6 py-3 text-sm text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400"
+            href="/cv/cv_ian_sollner.pdf"
+            download="cv_ian_sollner.pdf"
+            className="rounded-full border border-cyan-400/40 px-6 py-3 text-sm font-semibold text-cyan-300 transition hover:bg-cyan-400/10"
           >
             Descargar CV
           </a>
 
           <a
-            href="https://linkedin.com/in/TU-LINKEDIN"
+            href="https://linkedin.com/in/ian-alejandro-sollner-fuentealba-898375342"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-2xl border border-white/10 bg-white/5 px-6 py-3 text-sm text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400"

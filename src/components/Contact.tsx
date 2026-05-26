@@ -44,7 +44,14 @@ export default function Contact() {
                 </p>
 
                 <p className="text-slate-300">
-                  linkedin.com/in/tu-linkedin
+                  <a
+                    href="https://linkedin.com/in/ian-alejandro-sollner-fuentealba-898375342"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition hover:text-cyan-400 hover:underline hover:decoration-cyan-400"
+                  >
+                    LinkedIn
+                  </a>
                 </p>
               </div>
 
@@ -54,7 +61,14 @@ export default function Contact() {
                 </p>
 
                 <p className="text-slate-300">
-                  github.com/tu-github
+                  <a
+                    href="https://github.com/tu-github"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition hover:text-cyan-400 hover:underline hover:decoration-cyan-400"
+                  >
+                    github.com/tu-github
+                  </a>
                 </p>
               </div>
 
