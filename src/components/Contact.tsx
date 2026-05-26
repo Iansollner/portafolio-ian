@@ -105,7 +105,7 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="transition hover:text-cyan-400 hover:underline hover:decoration-cyan-400"
                   >
-                    github.com/tu-github
+                    github.com/Iansollner
                   </a>
                 </p>
               </div>
