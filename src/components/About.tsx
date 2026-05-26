@@ -24,7 +24,7 @@ export default function About() {
           <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur transition hover:border-cyan-400/40">
             <div className="mb-6 overflow-hidden rounded-3xl border border-cyan-400/20">
               <Image
-                src="/imagen/foto_formal_3.png"
+                src="/imagen/Foto_Formal_3.png"
                 alt="Ian Sollner"
                 width={400}
                 height={500}
