@@ -1,4 +1,42 @@
+"use client";
+
+import { FormEvent, useState } from "react";
+
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [feedback, setFeedback] = useState("");
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus("loading");
+    setFeedback("");
+
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      setStatus("error");
+      setFeedback(data?.error || "Ocurrió un error al enviar el mensaje.");
+      return;
+    }
+
+    setStatus("success");
+    setFeedback("Tu mensaje se envió correctamente. Gracias por contactarme.");
+    setFormData({ name: "", email: "", message: "" });
+  };
+
   return (
     <section id="contacto" className="px-6 py-28">
       <div className="mx-auto max-w-7xl">
@@ -75,7 +113,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <form className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur">
+          <form onSubmit={handleSubmit} className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur">
 
             <h3 className="mb-8 text-3xl font-bold text-white">
               Envíame un mensaje
@@ -91,6 +129,8 @@ export default function Contact() {
                 <input
                   type="text"
                   placeholder="Tu nombre"
+                  value={formData.name}
+                  onChange={(event) => setFormData({ ...formData, name: event.target.value })}
                   className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-5 py-4 text-white outline-none transition focus:border-cyan-400"
                 />
               </div>
@@ -103,6 +143,8 @@ export default function Contact() {
                 <input
                   type="email"
                   placeholder="correo@ejemplo.com"
+                  value={formData.email}
+                  onChange={(event) => setFormData({ ...formData, email: event.target.value })}
                   className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-5 py-4 text-white outline-none transition focus:border-cyan-400"
                 />
               </div>
@@ -115,15 +157,27 @@ export default function Contact() {
                 <textarea
                   rows={6}
                   placeholder="Escribe tu mensaje..."
+                  value={formData.message}
+                  onChange={(event) => setFormData({ ...formData, message: event.target.value })}
                   className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-5 py-4 text-white outline-none transition focus:border-cyan-400"
                 />
               </div>
 
+              {status !== "idle" && (
+                <p
+                  className={`text-sm ${status === "success" ? "text-emerald-400" : "text-rose-400"}`}
+                  aria-live="polite"
+                >
+                  {feedback}
+                </p>
+              )}
+
               <button
                 type="submit"
-                className="w-full rounded-2xl bg-cyan-400 px-8 py-4 font-semibold text-slate-950 transition hover:scale-[1.01] hover:bg-cyan-300"
+                disabled={status === "loading"}
+                className="w-full rounded-2xl bg-cyan-400 px-8 py-4 font-semibold text-slate-950 transition hover:scale-[1.01] hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-70"
               >
-                Enviar mensaje
+                {status === "loading" ? "Enviando..." : "Enviar mensaje"}
               </button>
 
             </div>
