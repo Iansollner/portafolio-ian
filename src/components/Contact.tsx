@@ -100,7 +100,7 @@ export default function Contact() {
 
                 <p className="text-slate-300">
                   <a
-                    href="https://github.com/tu-github"
+                    href="https://github.com/Iansollner"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="transition hover:text-cyan-400 hover:underline hover:decoration-cyan-400"
