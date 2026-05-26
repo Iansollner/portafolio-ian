@@ -54,6 +54,10 @@ export default function Navbar() {
             Educación
           </a>
 
+          <a href="#certificaciones" className="transition duration-300 hover:text-cyan-400">
+            Certificaciones
+          </a>
+
           <a href="#contacto" className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-5 py-2 text-cyan-300 transition duration-300 hover:border-cyan-400 hover:bg-cyan-400/20 hover:text-cyan-200">
             Contacto
           </a>
@@ -75,6 +79,9 @@ export default function Navbar() {
             </a>
             <a href="#educacion" onClick={() => setOpen(false)} className="transition duration-300 hover:text-cyan-400">
               Educación
+            </a>
+            <a href="#certificaciones" onClick={() => setOpen(false)} className="transition duration-300 hover:text-cyan-400">
+              Certificaciones
             </a>
             <a href="#contacto" onClick={() => setOpen(false)} className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-5 py-2 text-cyan-300 transition duration-300 hover:border-cyan-400 hover:bg-cyan-400/20 hover:text-cyan-200">
               Contacto
