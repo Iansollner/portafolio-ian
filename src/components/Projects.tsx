@@ -2,7 +2,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
   Cloud,
@@ -34,7 +34,7 @@ const categoryColors: Record<string, string> = {
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState<Category>("Todos");
-  const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
+  const [selectedTechnology, setSelectedTechnology] = useState<string>("Todas");
 
   // Generar dinámicamente las tecnologías disponibles
   const availableTechs = useMemo(() => {
@@ -50,17 +50,10 @@ export default function Projects() {
     return projects.filter((project) => {
       const categoryMatch = selectedCategory === "Todos" || project.category === selectedCategory;
       const techMatch =
-        selectedTechs.length === 0 ||
-        selectedTechs.some((tech) => project.technologies.includes(tech));
+        selectedTechnology === "Todas" || project.technologies.includes(selectedTechnology);
       return categoryMatch && techMatch;
     });
-  }, [selectedCategory, selectedTechs]);
-
-  const toggleTech = (tech: string) => {
-    setSelectedTechs((prev) =>
-      prev.includes(tech) ? prev.filter((t) => t !== tech) : [...prev, tech]
-    );
-  };
+  }, [selectedCategory, selectedTechnology]);
 
   return (
     <section id="portafolio" className="px-6 py-28">
@@ -107,20 +100,25 @@ export default function Projects() {
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
             Tecnologías
           </p>
-          <div className="flex flex-wrap gap-2">
-            {availableTechs.map((tech) => (
-              <button
-                key={tech}
-                onClick={() => toggleTech(tech)}
-                className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] transition ${
-                  selectedTechs.includes(tech)
-                    ? "border-cyan-400 bg-cyan-400/20 text-cyan-300"
-                    : "border-white/10 bg-white/5 text-slate-400 hover:border-white/20"
-                }`}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <label className="flex w-full flex-col gap-2 sm:w-auto">
+              <span className="text-xs uppercase tracking-[0.2em] text-slate-500">Selecciona tecnología</span>
+              <select
+                value={selectedTechnology}
+                onChange={(event) => setSelectedTechnology(event.target.value)}
+                className="w-full rounded-2xl border border-white/10 bg-slate-950/90 px-4 py-3 text-sm text-slate-200 shadow-inner shadow-slate-950/10 transition duration-300 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 sm:w-[260px]"
               >
-                {tech}
-              </button>
-            ))}
+                <option value="Todas">Todas</option>
+                {availableTechs.map((tech) => (
+                  <option key={tech} value={tech} className="bg-slate-950 text-slate-200">
+                    {tech}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <p className="text-sm text-slate-400">
+              Filtro por categoría y tecnología para ver solo los proyectos que te interesan.
+            </p>
           </div>
         </div>
 
@@ -160,13 +158,16 @@ export default function Projects() {
                           ? "bg-white p-2"
                           : "bg-slate-950/60"
                       }`}
->                      <Image
+                    >
+                      <Image
                         src={project.image}
                         alt={project.title}
                         width={800}
                         height={450}
                         className={`w-full transition duration-500 group-hover:scale-105 ${
-                          project.slug === "inventario_bodega_umag"
+                          project.slug === "gestor-de-actas"
+                            ? "h-44 object-contain sm:object-cover"
+                            : project.slug === "inventario_bodega_umag"
                             ? "h-44 object-contain"
                             : "h-44 object-cover"
                         }`}
