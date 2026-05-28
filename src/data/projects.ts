@@ -367,7 +367,7 @@ export const projects: Project[] = [
     "VSCode"
   ],
 
-  github: "#",
+  github: "https://github.com/Iansollner/portafolio-ian",
   demo: "#",
 
   necesidades: [

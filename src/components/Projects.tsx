@@ -55,6 +55,11 @@ export default function Projects() {
     });
   }, [selectedCategory, selectedTechnology]);
 
+  const hiddenGithubButtonSlugs = new Set([
+    "inventario_bodega_umag",
+    "computacion-paralela-mpi",
+  ]);
+
   return (
     <section id="portafolio" className="px-6 py-28">
       <div className="mx-auto max-w-7xl">
@@ -194,15 +199,17 @@ export default function Projects() {
                     </div>
 
                     <div className="flex flex-col gap-3 sm:flex-row">
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-400 hover:text-cyan-400 hover:shadow-lg hover:shadow-cyan-500/20"
-                      >
-                        <GitBranch size={18} />
-                        GitHub
-                      </a>
+                      {!hiddenGithubButtonSlugs.has(project.slug) && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-400 hover:text-cyan-400 hover:shadow-lg hover:shadow-cyan-500/20"
+                        >
+                          <GitBranch size={18} />
+                          GitHub
+                        </a>
+                      )}
 
                       <Link
                         href={`/proyectos/${project.slug}`}
